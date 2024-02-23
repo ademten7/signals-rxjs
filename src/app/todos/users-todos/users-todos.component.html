@@ -1,0 +1,26 @@
+<div class="card">
+  @if(userTasks().length){
+  <div class="card-header">
+    <h1>{{ pageTitle() }}</h1>
+  </div>
+
+  <div class="card-body">
+    <div style="height: 40px" class="row">
+      @for(task of userTasks(); track task){
+      <div>
+        <div class="col-md-6">{{ task.title }}</div>
+        <div class="col-md-2">{{ task.completed }}</div>
+        <div class="col-md-4">
+          @if(!task.completed){
+          <button class="btn btn-primary" (click)="markComplete(task)">
+            Mark as Complete
+          </button>
+          }
+        </div>
+      </div>
+
+      }
+    </div>
+  </div>
+  }
+</div>

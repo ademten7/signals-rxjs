@@ -1,0 +1,21 @@
+<div class="card">
+  <div class="card-header">
+    <h1>{{ pageTitle }}</h1>
+  </div>
+  <div class="card-body">
+    @if(users().length){
+    <div class="list-group">
+      @for(user of users(); track user){
+      <button
+        type="button"
+        class="list-group-item"
+        (ngClass)="{ active: user?.id === selectedUserId() }"
+        (click)="onSelected(user.id)"
+      >
+        {{ user.name }}
+      </button>
+      }
+    </div>
+    }
+  </div>
+</div>
