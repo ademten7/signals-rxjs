@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject, signal } from '@angular/core';
-import { catchError, of } from 'rxjs';
+import { catchError, of, tap } from 'rxjs';
 import { User } from '../models/user';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 
@@ -11,6 +11,7 @@ export class UserService {
   http = inject(HttpClient);
   userUrl = 'https://jsonplaceholder.typicode.com/users';
   private users$ = this.http.get<User[]>(this.userUrl).pipe(
+    tap((users:any)=> console.log(users)),
     catchError(() => of([] as User[])) //  on any error, just return an empty array
   );
 
